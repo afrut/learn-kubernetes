@@ -49,12 +49,27 @@
 
 
 
+# # kind clusters
 # kind create cluster `
 #     --name=$KIND_CLUSTER_NAME `
 #     --image=$KIND_IMAGE `
 #     --wait 2m
 
 # kind delete clusters $KIND_CLUSTER_NAME
+
+
+
+# # minikube clusters
+# minikube start
+# minikube stop
+# minikube delete --all
+# minikube status
+# minikube service hello-node
+# minikube addons list
+# minikube addons enable metrics-server
+# minikube addons disable metrics-server
+
+
 
 
 # # Ad-hoc commands
@@ -66,3 +81,24 @@
 # kubectl config set-context $KUBECTL_CONTEXT --cluster=my-cluster --namespace=$KUBECTL_NAMESPACE
 # kubectl get namespaces
 # kubectl get pods --all-namespaces
+# kubectl logs pod
+# kubectl get deployments
+# kubectl get events
+# kubectl get nodes
+# kubectl get deployments
+# kubectl get services
+# kubectl get pod,svc -n kube-system
+# kubectl top pods # See resource consumption of pods. Metrics Server has to be enabled
+# kubectl delete service hello-node
+# kubectl delete deployment hello-node
+
+
+
+# # Create a deployment that contains a pod 
+# kubectl create deployment `
+#     hello-node `
+#     --image=registry.k8s.io/e2e-test-images/agnhost:2.39 -- `
+#     /agnhost netexec --http-port=8080
+
+# # Create a service that exposes the pod
+# kubectl expose deployment hello-node --type=LoadBalancer --port=8080
